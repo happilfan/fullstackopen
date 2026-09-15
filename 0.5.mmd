@@ -1,0 +1,32 @@
+---
+config:
+  theme: dark
+---
+
+sequenceDiagram
+    participant User
+    participant Page
+    participant Server
+    participant data.json
+
+    User->>Page: 1. Open Website
+    Note right of User: https://studies.cs.helsinki.fi/exampleapp/spa
+    Page-->>User: Loading The Page
+
+    User->>Page: 2. Write something into the text field
+
+    User->>Page: 3. Click the Save button
+    Note right of User: Form element
+
+    Page->>Server: Send to Server
+    Note right of Page: HTTP POST request (new_note_spa)
+
+    Server->>data.json: Save to Array
+    Note right of Server: content, date
+
+    data.json-->>Server: Load from Array
+
+    Server-->>Page: Load from Server
+    Note right of Page: Document Object Model (DOM)
+    
+    Page-->>User: Update with new note (Without Refreshing)
